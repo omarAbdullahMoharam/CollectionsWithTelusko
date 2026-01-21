@@ -18,7 +18,6 @@ public class GenericList <T>implements Iterable<T> {
         }
     }
 
-
     public T get(int index){
         if (index < 0 || index >= count){
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + count);
@@ -26,14 +25,6 @@ public class GenericList <T>implements Iterable<T> {
         return items[index];
     }
 
-
-    public boolean hasNext() {
-        return false;
-    }
-
-    public T next() {
-        return null;
-    }
     @Override
     public Iterator<T> iterator() {
         return new ListIterator(this);
