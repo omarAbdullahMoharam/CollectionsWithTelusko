@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class GenericList <T>implements Iterator<T> {
+public class GenericList <T>implements Iterable<T> {
     private T[] items = (T[]) new Object[10];
     private int count ;
     public void add(T item){
@@ -8,13 +8,14 @@ public class GenericList <T>implements Iterator<T> {
             T[] newItems = null;
             try {
                 newItems = (T[]) new Object[items.length * 2];
+                System.arraycopy(items, 0, newItems, 0, items.length);
+                items = newItems;
+                items[count++] = item;
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            System.arraycopy(items, 0, newItems, 0, items.length);
-            items = newItems;
         }
-        items[count++] = item;
     }
 
 
@@ -26,16 +27,14 @@ public class GenericList <T>implements Iterator<T> {
     }
 
 
-    @Override
     public boolean hasNext() {
         return false;
     }
 
-    @Override
     public T next() {
         return null;
     }
-
+    @Override
     public Iterator<T> iterator() {
         return new ListIterator(this);
     }
